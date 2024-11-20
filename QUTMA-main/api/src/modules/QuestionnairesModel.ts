@@ -1,10 +1,5 @@
 import { Schema,model } from "mongoose";
-
-interface IQuestionnaires{
-    title:String;
-    description:String;
-    IdUser:Schema.Types.ObjectId | String
-}
+import { IQuestionnaires } from "../GlobalTypes";
 
 const QuestionnaireSchema = new Schema<IQuestionnaires>({
     title:{
@@ -17,6 +12,7 @@ const QuestionnaireSchema = new Schema<IQuestionnaires>({
     },
     IdUser:{
         type:Schema.Types.ObjectId,
+        ref:"user",
         required:true
     }
     
