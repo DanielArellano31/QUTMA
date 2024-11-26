@@ -6,7 +6,7 @@ const UserSchema = new Schema<IUser>({
         type:String,
         required:true
     },
-    lastname:{
+    lastNames:{
         type:String,
         required:true
     },

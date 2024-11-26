@@ -1,6 +1,12 @@
+ interface IUser{
+    name:string;
+    _id:string;
+    email:string;
+    lastName:string;
+    password:string;
+    rol:"administrator" | "client";
 
-import { IUser } from "../GlobalTypes";
-
+}
 
 declare namespace Express{
     export interface Request{

@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { UserModel } from "../modules/UsersModel";
-
+import jwt from "jsonwebtoken";
 
  export const registerUsers= async(req:Request,res:Response):Promise<any>=>{
    try {
@@ -32,18 +32,63 @@ import { UserModel } from "../modules/UsersModel";
         })
      }
 
-     await UserModel.create({
+      const user = await UserModel.create({
         name,
-        lastNames,
         email,
+        lastNames,
         password,
         rol
      })
-     return res.status(200).json({msg:"Usuario registrado con exito"})
+
+     const token = jwt.sign(JSON.stringify(user),"calladito")
+
+
+     return res.status(200).json({msg:"Usuario registrado con exito", token})
    } catch (error) {
     console.log(error)
     return res.status(500).json({msg:"Hubo un error al crear el usuario"})
    }
 
 
+};
+
+export const singin = async(req:Request, res:Response):Promise<any>=>{
+try {
+
+   //validar que existe correo y contraseña
+   //verificar que el usuario existe
+   //si no existe devolver error
+   //si existe devolver token
+   
+   const email = req.body.email
+   const password = req.body.password
+   
+   
+   if(!email || !password ){
+      return res.status(400).json({
+         msg:"Faltan datos para iniciar sesion"
+      })
+   }
+   
+   
+   
+   const user = await UserModel.findOne({ email, password})
+   if (!user){
+      return res.status(404).json({
+         msg:"El usuario no existe"
+     })
+   }
+   const token = jwt.sign(JSON.stringify(user),"si existe el usuario")
+
+   return res.status(200).json({
+      msg:"Iniciaste sesion en tu cuenta", token
+  })
+} 
+
+catch (error) {
+   console.error("Error en el endpoint signin:", error);
+
+   return res.status(500).json({msg:"El usuario no existe"})
+   
+}
 }

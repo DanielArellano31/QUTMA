@@ -83,6 +83,7 @@ export const CreateQuestionnaire = () => {
                         <Card.Body>
                             <Card.Text className='text-end'>
                                 {
+                                    // eslint-disable-next-line eqeqeq
                                     createQuestionnaire.questions.length != 1 && (
                                         <OverlayTrigger
                                             overlay={<Tooltip>
