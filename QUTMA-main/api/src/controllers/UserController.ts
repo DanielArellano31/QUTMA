@@ -55,10 +55,7 @@ import jwt from "jsonwebtoken";
 export const singin = async(req:Request, res:Response):Promise<any>=>{
 try {
 
-   //validar que existe correo y contraseña
-   //verificar que el usuario existe
-   //si no existe devolver error
-   //si existe devolver token
+
    
    const email = req.body.email
    const password = req.body.password
@@ -81,7 +78,7 @@ try {
    const token = jwt.sign(JSON.stringify(user),"si existe el usuario")
 
    return res.status(200).json({
-      msg:"Iniciaste sesion en tu cuenta", token
+      msg:"Iniciaste sesion en tu cuenta", token, user
   })
 } 
 
