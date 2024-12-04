@@ -16,17 +16,15 @@ export const RegisterUser = () => {
         console.log(nData)
     };
 
-    const onSubmit =  async() => {
+    const onSubmit = async () => {
         /* Enviar data al server */
-       try {
-        data.rol="client"
-            await axios.post("http://localhost:4000/user/create",data)
+        try {
+            data.rol = "client"
+            await axios.post("http://localhost:4000/users/create", data)
             navigate("/")
-       } catch (error) {
-        alert("Hubo un error")
-       }
-       
-       
+        } catch (error) {
+            alert("Hubo un error")
+        }
     }
     return (
         <Container>

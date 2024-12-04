@@ -46,11 +46,11 @@ const router = createBrowserRouter([
     element: <CreateQuestionnaire />,
   },
   {
-    path: "/create-questionnaires",
+    path: "/create-questionnaire",
     element: <CreateQuestionnaire />,
   },
 ]);
-const user = localStorage.user ? JSON.parse(localStorage.user): undefined
+const user = localStorage.user ? JSON.parse(localStorage.user) : undefined;
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
